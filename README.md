@@ -28,6 +28,8 @@ projeto_engajamento_fase2/
 └── README.md
 ```
 
+![Diagrama de módulos](img/diagrama_de_modulos.png)
+
 ---
 
 ## 🧩 Principais Classes
@@ -37,6 +39,8 @@ projeto_engajamento_fase2/
 - `Interacao`: Representa ações dos usuários com conteúdos.
 - `Usuario`: Agrega interações por usuário.
 - `SistemaAnaliseEngajamento`: Classe de orquestração, leitura de dados e geração de relatórios.
+
+![Diagrama de classes](img/diagrama_de_classes.png)
 
 ---
 
