@@ -60,12 +60,14 @@ projeto_engajamento_fase2/
 ## ▶️ Como Executar
 
 1. Clone este repositório:
+
 ```bash
 git clone https://github.com/seu-usuario/projeto_engajamento_fase2.git
 cd projeto_engajamento_fase2
 ```
 
 2. Execute o script principal:
+
 ```bash
 python main.py
 ```
@@ -89,6 +91,41 @@ Certifique-se de que o arquivo `interacoes_globo.csv` esteja presente na raiz do
 - Práticas de validação de entrada e uso de `@property`.
 
 ---
+
+## Equipe de colaboradores
+
+<div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap">
+  <p align="center">
+    <img src="https://github.com/EdOliveiraJr.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Edvaldo Oliveira"/><br>
+    <sub><b>Edvaldo Oliveira</b></sub><br>
+    <a href="https://github.com/EdOliveiraJr" target="_blank">@EdOliveiraJr</a>
+  </p>
+  <p align="center">
+    <img src="https://github.com/malufazenda.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Edvaldo Oliveira"/><br>
+    <sub><b>Malu Fazenda</b></sub><br>
+    <a href="https://github.com/malufazenda" target="_blank">@malufazenda</a>
+  </p>
+  <p align="center">
+    <img src="https://github.com/daniels070.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Edvaldo Oliveira"/><br>
+    <sub><b>Daniel Brambila</b></sub><br>
+    <a href="https://github.com/daniels070" target="_blank">@daniels070</a>
+  </p>
+  <p align="center">
+    <img src="https://github.com/danilodpx.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Edvaldo Oliveira"/><br>
+    <sub><b>Danilo Pinho</b></sub><br>
+    <a href="https://github.com/danilodpx" target="_blank">@danilodpx</a>
+  </p>
+  <p align="center">
+    <img src="https://github.com/LucasSandes07.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Edvaldo Oliveira"/><br>
+    <sub><b>Lucas Sandes</b></sub><br>
+    <a href="https://github.com/LucasSandes07" target="_blank">@LucasSandes07</a>
+  </p>
+  <p align="center">
+    <img src="https://github.com/eufmartins.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Edvaldo Oliveira"/><br>
+    <sub><b>Felipe Martins</b></sub><br>
+    <a href="https://github.com/eufmartins" target="_blank">@eufmartins</a>
+  </p>
+</div>
 
 ## 📄 Licença
 
