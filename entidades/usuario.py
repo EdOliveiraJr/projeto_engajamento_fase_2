@@ -1,4 +1,7 @@
 from typing import List, Set
+from entidades.interacao import Interacao   
+from entidades.conteudo import Conteudo
+from entidades.plataforma import Plataforma
 
 class Usuario:
     # Construtor que recebe o id do usuário
