@@ -1,7 +1,6 @@
-from entidades.conteudo import Conteudo
-from entidades.plataforma import Plataforma
-from entidades.usuario import Usuario
-from entidades.interacao import Interacao
+import csv
+
+from entidades import *
 
 class SistemaAnaliseEngajamento:  
   def __init__(self):
@@ -35,7 +34,6 @@ class SistemaAnaliseEngajamento:
     
     # _carregar_interacoes_csv(self, caminho_arquivo: str) -> list: Carrega dados brutos do CSV.
     def _carregar_interacoes_csv(self, caminho_arquivo: str) -> list[dict]:
-      import csv
       interacoes = []
       with open(caminho_arquivo, mode='r', encoding='utf-8') as file:
         reader = csv.DictReader(file)
@@ -65,7 +63,7 @@ class SistemaAnaliseEngajamento:
         id_usuario = int(interacao['id_usuario'])
         usuario = plataforma.usuarios_registrados.get(id_usuario)
         if not usuario:
-          usuario = Usuario(id_usuario=id_usuario, nombre=interacao['nombre'], email=interacao['email'], fecha_registro=interacao['fecha_registro'])
+          usuario = Usuario(id_usuario=id_usuario, nome=interacao['nome'], email=interacao['email'], fecha_registro=interacao['fecha_registro'])
           plataforma.usuarios_registrados[id_usuario] = usuario
         
         # 4.2.6. Tenta instanciar Interacao, lidando com ValueError para validações.
@@ -105,7 +103,7 @@ class SistemaAnaliseEngajamento:
         # Aqui, assumimos que Usuario tem métodos para calcular métricas de atividade.
         metricas = usuario.calcular_metricas_atividade()
         relatorio.append({
-          'usuario': usuario.nombre,
+          'usuario': usuario.nome,
           'metricas': metricas
         })
       # Ordena o relatório por uma métrica específica, se top_n for fornecido.
