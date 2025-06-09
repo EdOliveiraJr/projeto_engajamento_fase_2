@@ -93,39 +93,10 @@ Certifique-se de que o arquivo `interacoes_globo.csv` esteja presente na raiz do
 ---
 
 ## Equipe de colaboradores
+|<img src="https://github.com/EdOliveiraJr.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Edvaldo Oliveira"/> | <img src="https://github.com/malufazenda.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Malu Fazendo"/> |   <img src="https://github.com/daniels070.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Daniel Brambila"/> | <img src="https://github.com/danilodpx.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Danilo Pinho"/> | <img src="https://github.com/LucasSandes07.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Lucas Sandes"/> | <img src="https://github.com/eufmartins.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Felipe Martins"/> |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|<a href="https://github.com/EdOliveiraJr" target="_blank"> Edvaldo Oliveira</a> | <a href="https://github.com/malufazenda" target="_blank"> Malu Fazenda</a> | <a href="https://github.com/daniels070" target="_blank"> Daniel Brambila </a> | <a href="https://github.com/danilodpx" target="_blank"> Danilo Pinho </a> | <a href="https://github.com/LucasSandes07" target="_blank"> Lucas Sandes </a> | <a href="https://github.com/eufmartins" target="_blank"> Felipe Martins </a> |
 
-<div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap">
-  <p align="center">
-    <img src="https://github.com/EdOliveiraJr.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Edvaldo Oliveira"/><br>
-    <sub><b>Edvaldo Oliveira</b></sub><br>
-    <a href="https://github.com/EdOliveiraJr" target="_blank">@EdOliveiraJr</a>
-  </p>
-  <p align="center">
-    <img src="https://github.com/malufazenda.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Edvaldo Oliveira"/><br>
-    <sub><b>Malu Fazenda</b></sub><br>
-    <a href="https://github.com/malufazenda" target="_blank">@malufazenda</a>
-  </p>
-  <p align="center">
-    <img src="https://github.com/daniels070.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Edvaldo Oliveira"/><br>
-    <sub><b>Daniel Brambila</b></sub><br>
-    <a href="https://github.com/daniels070" target="_blank">@daniels070</a>
-  </p>
-  <p align="center">
-    <img src="https://github.com/danilodpx.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Edvaldo Oliveira"/><br>
-    <sub><b>Danilo Pinho</b></sub><br>
-    <a href="https://github.com/danilodpx" target="_blank">@danilodpx</a>
-  </p>
-  <p align="center">
-    <img src="https://github.com/LucasSandes07.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Edvaldo Oliveira"/><br>
-    <sub><b>Lucas Sandes</b></sub><br>
-    <a href="https://github.com/LucasSandes07" target="_blank">@LucasSandes07</a>
-  </p>
-  <p align="center">
-    <img src="https://github.com/eufmartins.png" width="100px" style="border-radius: 50%;" alt="Foto do colaborador Edvaldo Oliveira"/><br>
-    <sub><b>Felipe Martins</b></sub><br>
-    <a href="https://github.com/eufmartins" target="_blank">@eufmartins</a>
-  </p>
-</div>
 
 ## 📄 Licença
 
