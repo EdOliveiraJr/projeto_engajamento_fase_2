@@ -5,6 +5,7 @@ from entidades.interacao import Interacao
 
 class SistemaAnaliseEngajamento:  
   def __init__(self):
+    VERSAO_ANALISE = "2.0"
     # Dicionário mapeando nome_plataforma (str) para objetos Plataforma. Usado para o "CRUD" em memória.
     self.__plataformas_registradas: dict['nome_plataforma' : str, 'Plataforma'] = {} 
     #  Dicionário mapeando id_conteudo (int) para objetos Conteudo (ou suas subclasses).
@@ -81,4 +82,43 @@ class SistemaAnaliseEngajamento:
           
         except ValueError as e:
           print(f"Erro ao processar interação: {e}")
-          
+
+    # gerar_relatorio_engajamento_conteudos(self, top_n: int = None): Itera por __conteudos_registrados, usa os métodos de cada objeto Conteudo para calcular métricas e as exibe.
+    def gerar_relatorio_engajamento_conteudos(self, top_n: int = None):
+      relatorio = []
+      for conteudo in self.__conteudos_registrados.values():
+        # Aqui, assumimos que Conteudo tem métodos para calcular métricas de engajamento.
+        metricas = conteudo.calcular_metricas_engajamento()
+        relatorio.append({
+          'titulo': conteudo.titulo,
+          'metricas': metricas
+        })
+      # Ordena o relatório por uma métrica específica, se top_n for fornecido.
+      if top_n:
+        relatorio = sorted(relatorio, key=lambda x: x['metricas']['visualizacoes'], reverse=True)[:top_n]
+      return relatorio
+      
+    # gerar_relatorio_atividade_usuarios(self, top_n:  int = None): Similar, para usuários.
+    def gerar_relatorio_atividade_usuarios(self, top_n: int = None):
+      relatorio = []
+      for usuario in self.__usuarios_registrados.values():
+        # Aqui, assumimos que Usuario tem métodos para calcular métricas de atividade.
+        metricas = usuario.calcular_metricas_atividade()
+        relatorio.append({
+          'usuario': usuario.nombre,
+          'metricas': metricas
+        })
+      # Ordena o relatório por uma métrica específica, se top_n for fornecido.
+      if top_n:
+        relatorio = sorted(relatorio, key=lambda x: x['metricas']['interacoes'], reverse=True)[:top_n]
+      return relatorio
+
+    # identificar_top_conteudos(self, metrica: str, n: int): (e.g., metrica='tempo_total_consumo').
+    def identificar_top_conteudos(self, metrica: str, n: int):
+      conteudos_ordenados = sorted(self.__conteudos_registrados.values(), key=lambda c: c.calcular_metricas_engajamento()[metrica], reverse=True)
+      return conteudos_ordenados[:n]
+    
+
+    @classmethod
+    def obter_versao(cls):
+        return cls.VERSAO_ANALISE
