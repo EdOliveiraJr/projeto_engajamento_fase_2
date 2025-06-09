@@ -27,17 +27,60 @@ class Usuario:
             self.__interacoes_realizadas.append(interacao)
 
     def obter_interacoes_por_tipo(self, tipo: str) -> List['Interacao']:
-        return [i for i in self.__interacoes_realizadas if i._tipo_interacao == tipo]
+         
+        resultado = {}
+        for item in Interacao:
+            idc = item['id_conteudo']
+            nome = item['nome_conteudo']
+            tipo = item['tipo_interacao']
+            if idc not in resultado:
+                resultado[idc] = {
+                'nome_conteudo': nome,
+                'view_start': 0,
+                'like': 0,
+                'share': 0,
+                'comment': 0
+            }
+        if tipo in resultado[idc]:
+            resultado[idc][tipo] += 1
+        else:
+            resultado[idc][tipo] = 1 
+            return resultado
 
     def obter_conteudos_unicos_consumidos(self) -> Set['Conteudo']:
-        return set(i._conteudo_associado for i in self.__interacoes_realizadas)
+        metricas = {}
+        for item in Conteudo:
+            id_conteudo = item['id_conteudo']
+            
+            if id_conteudo not in metricas:
+                metricas[id_conteudo] = {
+                'nome_conteudo': item['nome_conteudo'],
+                'likes': 0,
+                'shares': 0,
+                'comments': 0,
+                'total de interações': 0
+            }
+        
+        tipo = item['tipo_interacao']
 
-    def calcular_tempo_total_consumo_plataforma(self, plataforma: 'Plataforma') -> int:
-        total = 0
-        for i in self.__interacoes_realizadas:
-            if i._plataforma_interacao == plataforma:
-                total += i._watch_duration_seconds
-        return total
+        if tipo == 'like':
+            metricas[id_conteudo]['likes'] += 1
+            metricas[id_conteudo]['total de interações'] += 1
+        elif tipo == 'share':
+            metricas[id_conteudo]['shares'] += 1
+            metricas[id_conteudo]['total de interações'] += 1
+        elif tipo == 'comment':
+            metricas[id_conteudo]['comments'] += 1
+            metricas[id_conteudo]['total de interações'] += 1
+            
+            return metricas
+
+#    def calcular_tempo_total_consumo_plataforma(self, plataforma: 'Plataforma') -> int:
+#        total = 0
+#        for i in self.__interacoes_realizadas:
+#            if i._plataforma_interacao == plataforma:
+#                total += i._watch_duration_seconds
+#        return total
 
     def plataformas_mais_frequentes(self, top_n: int) -> List['Plataforma']:
         frequencia = {}
