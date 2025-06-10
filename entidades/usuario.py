@@ -47,48 +47,46 @@ class Usuario:
 
     def calcular_tempo_total_consumo_plataforma(self, plataforma: 'Plataforma') -> int:
         
-        total = 0
-        
+        tempo_total = 0
+
         for interacao in self.__interacoes_realizadas:
             if interacao._plataforma_interacao == plataforma:
-                duracao = interacao._watch_duration_seconds
-                total = total + duracao
-                return total
+                tempo_total += interacao._watch_duration_seconds
+                return tempo_total
 
-    def plataformas_mais_frequentes(self, top_n: int) -> List['Plataforma']:
+    def plataformas_mais_frequentes(self, top_n=3) -> list:
         
         frequencia = {}
         
         for interacao in self.__interacoes_realizadas:
-            
             plataforma = interacao._plataforma_interacao
-            
             if plataforma in frequencia:
                 frequencia[plataforma] += 1
-                
             else:
                 frequencia[plataforma] = 1
                 
-            plataformas_ordenadas = []
-            
-            while len(plataformas_ordenadas) < top_n and len(frequencia) > 0:
                 
-                mais_frequente = None
-                maior_contagem = -1
+                lista_frequencias = []
                 
                 for plataforma in frequencia:
+                    lista_frequencias.append((plataforma, frequencia[plataforma]))
+                    n = len(lista_frequencias)
                     
-                    if frequencia[plataforma] > maior_contagem:
-                        maior_contagem = frequencia[plataforma]
-                        if mais_frequente is not None:
-                            plataformas_ordenadas.append(mais_frequente)
-                            del frequencia[mais_frequente]
-                           
-                            return plataformas_ordenadas
-
+                    for i in range(n):
+                        for j in range(0, n - i - 1):
+                            if lista_frequencias[j][1] < lista_frequencias[j + 1][1]:
+                                lista_frequencias[j], lista_frequencias[j + 1] = lista_frequencias[j + 1], lista_frequencias[j]
+                                
+                                plataformas_ordenadas = []
+                                
+                                for i in range(min(top_n, len(lista_frequencias))):
+                                    plataformas_ordenadas.append(lista_frequencias[i][0])
+                                    
+                                    return plataformas_ordenadas
 
     def __str__(self):
         return f"Usuario(id={self.__id_usuario})"
 
     def __repr__(self):
         return self.__str__()
+
