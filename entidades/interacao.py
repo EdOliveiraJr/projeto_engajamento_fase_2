@@ -1,6 +1,6 @@
 import datetime
-import Conteudo
-import Plataforma
+from entidades import Conteudo
+from entidades import Plataforma
 
 class Interacao:
     
