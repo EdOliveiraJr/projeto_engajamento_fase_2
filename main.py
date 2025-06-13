@@ -34,55 +34,7 @@ def pipeline():
         print(f"{i}. {c} - Tempo total consumido: {c.calcular_tempo_total_consumo()} segundos")
     print()
 
-    # 6. Métodos da classe Usuario
-    print("6. Chamando métodos da classe Usuario")
-    for usuario in sistema._SistemaAnaliseEngajamento__usuarios_registrados.values():
-        print(f"\nUsuário: {usuario}")
-
-        print("- Interações do tipo 'like':")
-        for interacao in usuario.obter_interacoes_por_tipo("like"):
-            print(f"  • {interacao}")
-
-        print("- Conteúdos únicos consumidos:")
-        for conteudo in usuario.obter_conteudos_unicos_consumidos():
-            print(f"  • {conteudo}")
-
-        print("- Tempo total de consumo por plataforma:")
-        for plataforma in plataformas:
-            tempo = usuario.calcular_tempo_total_consumo_plataforma(plataforma)
-            print(f"  • {plataforma.nome_plataforma}: {tempo} segundos")
-
-        print("- Plataformas mais frequentes:")
-        for nome, quantidade in usuario.plataformas_mais_frequentes(3):
-            print(f"  • {nome}: {quantidade} interações")
-
-        print("\n--------------------------------------------------\n")
-
-    # 7. Métodos da classe Conteudo
-    print("7. Chamando métodos da classe Conteudo")
-    for conteudo in sistema._SistemaAnaliseEngajamento__conteudos_registrados.values():
-        print(f"\nConteúdo: {conteudo}")
-
-        print("- Total de interações de engajamento:")
-        print(f"  • {conteudo.calcular_total_interacoes_engajamento()}")
-
-        print("- Contagem por tipo de interação:")
-        contagem = conteudo.calcular_contagem_por_tipo_interacao()
-        for tipo, qtd in contagem.items():
-            print(f"  • {tipo}: {qtd}")
-
-        print("- Tempo total de consumo:")
-        print(f"  • {conteudo.calcular_tempo_total_consumo()} segundos")
-
-        print("- Tempo médio de consumo:")
-        print(f"  • {conteudo.calcular_media_tempo_consumo():.2f} segundos")
-
-        print("- Comentários:")
-        for comentario in conteudo.listar_comentarios():
-            print(f"  • {comentario}")
-
-        print("\n--------------------------------------------------\n")
-        if __name__ == "__main__":
+if __name__ == "__main__":
              info = '''
         Projeto Formação em Tecnologia Rede Globo
         Módulo DS-PY-19: Lógica de Programação em Python

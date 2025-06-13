@@ -77,19 +77,55 @@ class SistemaAnaliseEngajamento:
             except ValueError as e:
                 print(f"Erro ao processar interação: {e}")
 
-    def gerar_relatorio_engajamento_conteudos(self, top_n=None):
+    def gerar_relatorio_engajamento_conteudos(self):
+
         for conteudo in self.__conteudos_registrados.values():
-            print(f"Conteúdo: {conteudo}")
-            print(
-                f"  Total de Interações: {conteudo.calcular_total_interacoes_engajamento()}"
-            )
-            print(f"  Comentários: {conteudo.listar_comentarios()}")
+            print(f"\nConteúdo: {conteudo}")
+            print("- Total de interações de engajamento:")
+            print(f"  • {conteudo.calcular_total_interacoes_engajamento()}")
 
-    def gerar_relatorio_atividade_usuarios(self, top_n=None):
-        for usuario in self.__usuarios_registrados.values():
-            print(f"Usuário: {usuario}")
-            print(f"  Plataformas mais usadas: {usuario.plataformas_mais_frequentes()}")
+            print("- Contagem por tipo de interação:")
+            contagem = conteudo.calcular_contagem_por_tipo_interacao()
+            for tipo, qtd in contagem.items():
+                print(f"  • {tipo}: {qtd}")
 
-    def identificar_top_conteudos(self, metrica, n):
-        pass
-            
+                
+
+    def gerar_relatorio_atividade_usuarios(self):
+            print("6. Chamando métodos da classe Usuario")
+            for usuario in self.__usuarios_registrados.values():
+                print(f"\nUsuário: {usuario}")
+
+                print("- Interações do tipo 'like':")
+            for interacao in usuario.obter_interacoes_por_tipo("like"):
+                print(f"  • {interacao}")
+
+                print("- Conteúdos únicos consumidos:")
+            for conteudo in usuario.obter_conteudos_unicos_consumidos():
+                print(f"  • {conteudo}")
+
+                print("- Tempo total de consumo por plataforma:")
+            for plataforma in self.__plataformas_registradas:
+                tempo = usuario.calcular_tempo_total_consumo_plataforma(plataforma)
+                print(f"  • {plataforma.nome_plataforma}: {tempo} segundos")
+
+                print("- Plataformas mais frequentes:")
+            for nome, quantidade in usuario.plataformas_mais_frequentes(3):
+                print(f"  • {nome}: {quantidade} interações")
+
+
+    def identificar_top_conteudos(self, metrica, n=3):
+
+        tops = int(0)
+
+        if metrica == 'tempo_total_consumo':           
+            for conteudo in self.__conteudos_registrados:
+                print("- Tempo total de consumo:")
+                print(f"  • {conteudo.calcular_tempo_total_consumo()} segundos")
+        if metrica == 'media_tempo_consumo':
+            for counteudo in self.__conteudos_registrados:
+                print("- Tempo médio de consumo:")
+                print(f"  • {conteudo.calcular_media_tempo_consumo():.2f} segundos")
+
+        
+      
