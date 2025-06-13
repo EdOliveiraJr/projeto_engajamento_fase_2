@@ -8,9 +8,9 @@ class Plataforma:
             id_plataforma (int): O ID único da plataforma. Defaults to None.
         """
         # A atribuição é feita através da property para garantir a validação.
-        self.nome_plataforma = nome_plataforma
+        self.__nome_plataforma = nome_plataforma
         # O ID não possui validação específica, então é atribuído diretamente.
-        self._id_plataforma = id_plataforma
+        self.__id_plataforma = id_plataforma
 
     @property
     def id_plataforma(self) -> int:
@@ -18,12 +18,12 @@ class Plataforma:
         Retorna o ID da plataforma.
         Este atributo é "read-only" após a instanciação.
         """
-        return self._id_plataforma
+        return self.__id_plataforma
 
     @property
     def nome_plataforma(self) -> str:
         """Retorna o nome da plataforma."""
-        return self._nome_plataforma
+        return self.__nome_plataforma
 
     @nome_plataforma.setter
     def nome_plataforma(self, nome: str):
