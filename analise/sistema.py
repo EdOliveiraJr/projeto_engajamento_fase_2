@@ -1,17 +1,16 @@
 import csv
-from entidades.plataforma import Plataforma
-from entidades.conteudo import Video
-from entidades.usuario import Usuario
-from entidades.interacao import Interacao
+from entidades import *
 
 class SistemaAnaliseEngajamento:
     VERSAO_ANALISE = "2.0"
+    id_plataforma_atual = 0
 
     def __init__(self):
-        self.__plataformas_registradas = {}
-        self.__conteudos_registrados = {}
+        self.__plataformas_registradas  = {}
+        self.__conteudos_registrados  = {}
         self.__usuarios_registrados = {}
-        self.__proximo_id_plataforma = 1
+        self.__proximo_id_plataforma = SistemaAnaliseEngajamento.id_plataforma_atual + 1
+        SistemaAnaliseEngajamento.id_plataforma_atual += 1
 
     def cadastrar_plataforma(self, nome):
         if nome not in self.__plataformas_registradas:
@@ -21,7 +20,7 @@ class SistemaAnaliseEngajamento:
         return self.__plataformas_registradas[nome]
 
     def obter_plataforma(self, nome):
-        return self.__plataformas_registradas.get(nome) or self.cadastrar_plataforma(nome)
+        return self.__plataformas_registradas.get(nome) or None
 
     def listar_plataformas(self):
         return list(self.__plataformas_registradas.values())
@@ -31,34 +30,42 @@ class SistemaAnaliseEngajamento:
             return list(csv.DictReader(f))
 
     def processar_interacoes_do_csv(self, path):
-        for linha in self._carregar_interacoes_csv(path):
+        interacoes = self._carregar_interacoes_csv(path)
+        for linha in interacoes:
+            print(linha['nome_conteudo'])
+
+            if  self.obter_plataforma(linha['plataforma']) is None:
+                self.cadastrar_plataforma(linha['plataforma'])
+                       
+            if self.__conteudos_registrados.get(linha['id_conteudo']) is None:
+                if('podcast' in linha['nome_conteudo'].lower()):
+                    podcast = Podcast(linha['id_conteudo'], linha['nome_conteudo'], linha['watch_duration_seconds'])
+                    self.__conteudos_registrados.append(podcast) 
+
+                if('video' in linha['nome_conteudo'].lower()):
+                    video = Video(linha['id_conteudo'], linha['nome_conteudo'], linha['watch_duration_seconds'])
+                    self.__conteudos_registrados.append(video)
+
+                if('artigo' in linha['nome_conteudo'].lower()):
+                    artigo = Artigo(linha['id_conteudo'], linha['nome_conteudo'], linha['watch_duration_seconds'])
+                    self.__conteudos_registrados.append(artigo)
+
+            if self.__usuarios_registrados.get(linha['id_usuario']) is None:
+                usuario = Usuario(linha['id_usuario'], linha['nome_usuario'])
+                self.__usuarios_registrados[linha['id_usuario']] = usuario
+
             try:
+                conteudo = self.__conteudos_registrados[linha['id_conteudo']]
                 plataforma = self.obter_plataforma(linha['plataforma'])
-                id_conteudo = int(linha['id_conteudo'])
-                if id_conteudo not in self.__conteudos_registrados:
-                    conteudo = Video(id_conteudo, linha['nome_conteudo'], int(linha.get('duracao_total_video_seg', 0)))
-                    self.__conteudos_registrados[id_conteudo] = conteudo
-                else:
-                    conteudo = self.__conteudos_registrados[id_conteudo]
-
-                id_usuario = int(linha['id_usuario'])
-                usuario = self.__usuarios_registrados.setdefault(id_usuario, Usuario(id_usuario))
-
-                interacao = Interacao(
-                    interacao_id=int(linha['interacao_id']),
-                    conteudo_associado=conteudo,
-                    id_usuario=id_usuario,
-                    timestamp_interacao=linha['timestamp_interacao'],
-                    plataforma_interacao=plataforma,
-                    tipo_interacao=linha['tipo_interacao'],
-                    watch_duration_seconds=int(linha.get('watch_duration_seconds', 0)),
-                    comment_text=linha.get('comment_text', '')
-                )
-
+                usuario = self.__usuarios_registrados[linha['id_usuario']]
+                
+                interacao = Interacao(conteudo, plataforma, linha)
                 conteudo.adicionar_interacao(interacao)
-                usuario.registrar_interacao(interacao)
-            except Exception as e:
-                print(f"Erro ao processar linha: {linha}. Erro: {e}")
+                plataforma.adicionar_interacao(interacao)
+                usuario.adicionar_interacao(interacao)
+            except ValueError as e:
+                print(f"Erro ao processar interação: {e}")
+                
 
     def gerar_relatorio_engajamento_conteudos(self, top_n=None):
         for conteudo in self.__conteudos_registrados.values():
