@@ -4,7 +4,7 @@ from entidades.conteudo import Conteudo
 from entidades.plataforma import Plataforma
 
 class Usuario:
-    # Construtor que recebe o id do usuário
+    # Construtor que recebe o id do usuï¿½rio
     def __init__(self, id_usuario: int):
         self.__id_usuario = id_usuario
         self.__interacoes_realizadas: List['Interacao'] = []
@@ -24,9 +24,9 @@ class Usuario:
     def interacoes_realizadas(self) -> List['Interacao']:
         return self.__interacoes_realizadas
     
-    # Métodos principais
+    # Mï¿½todos principais
     def registrar_interacao(self, interacao: 'Interacao'):
-        if interacao._id_usuario == self.__id_usuario:
+        if interacao.id_usuario == self.__id_usuario:
             self.__interacoes_realizadas.append(interacao)
 
     def obter_interacoes_por_tipo(self, tipo: str) -> List['Interacao']:
