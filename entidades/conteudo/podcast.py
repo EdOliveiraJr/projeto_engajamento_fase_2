@@ -1,5 +1,5 @@
 
-from entidades.conteudo import Conteudo
+from entidades.conteudo.conteudo import Conteudo
 
 class Podcast(Conteudo):
     def __init__(self, id_conteudo: int, nome_conteudo: str, duracao_total_episodio_seg: int):

@@ -1,9 +1,9 @@
-from analise.sistema import SistemaAnaliseEngajamento
+from analise import Sistema
 
 def pipeline():
     print("************ Iniciando pipeline completo ************\n")
 
-    sistema = SistemaAnaliseEngajamento()
+    sistema = Sistema()
 
     # 1. Processar CSV
     print("1. Carregando e processando interações do CSV")

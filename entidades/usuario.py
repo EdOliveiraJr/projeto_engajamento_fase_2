@@ -1,7 +1,8 @@
 from typing import List, Set
-from entidades.interacao import Interacao   
-from entidades.conteudo import Conteudo
-from entidades.plataforma import Plataforma
+
+from entidades import Interacao
+from entidades import Conteudo
+from entidades import Plataforma
 
 class Usuario:
     # Construtor que recebe o id do usu�rio
@@ -17,7 +18,6 @@ class Usuario:
     @id_usuario.setter
     def id_usuario(self, novo_id: int):
         self.__id_usuario = novo_id
-    
     
     # Getter para interacoes_realizadas
     @property

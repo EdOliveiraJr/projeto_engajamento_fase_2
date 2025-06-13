@@ -1,6 +1,4 @@
 class Plataforma:
-    
-
     def __init__(self, nome_plataforma: str, id_plataforma: int = None):
         """
         Inicializa um objeto Plataforma.
