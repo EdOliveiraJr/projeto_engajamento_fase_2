@@ -69,11 +69,24 @@ class SistemaAnaliseEngajamento:
                 conteudo: Conteudo = self.__conteudos_registrados.get(linha["id_conteudo"])
                 usuario: Usuario = self.__usuarios_registrados.get(linha["id_usuario"])
 
-                print(plataforma, conteudo, usuario)
-
-                interacao = Interacao(conteudo, plataforma, linha)
-                conteudo.adicionar_interacao(interacao)
-                usuario.registrar_interacao(interacao)
+                try: 
+                    interacao = Interacao(conteudo, plataforma, linha)
+                except ValueError as e:
+                    print(f"Erro ao criar interação: {e}")
+                    continue
+                    
+                try:
+                    conteudo.adicionar_interacao(interacao)
+                except ValueError as e:
+                    print(f"Erro ao adicionar interação ao conteúdo: {e}")
+                    continue
+                
+                try:
+                    usuario.registrar_interacao(interacao)
+                except ValueError as e:
+                    print(f"Erro ao registrar interação no usuário: {e}")
+                    continue
+            
             except ValueError as e:
                 print(f"Erro ao processar interação: {e}")
 
