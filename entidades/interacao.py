@@ -8,13 +8,11 @@ class Interacao:
         TIPOS_INTERACAO_VALIDOS = ['view_start', 'like', 'share', 'comment']
         self.__conteudo_associado: Conteudo = conteudo_associado
         self.__plataforma_interacao: Plataforma = plataforma_interacao
-
-        self.__interacao_id: int = int(linha_csv['interacao_id']) if 'interacao_id' in linha_csv else -1
-        self.__id_usuario: int = int(linha_csv['id_usuario'])
+        self.__id_usuario: int = int(linha_csv['id_usuario'] or 0)
         self.__timestamp_interacao: datetime.datetime = datetime.datetime.strptime(
             linha_csv['timestamp_interacao'], "%Y-%m-%d %H:%M:%S"
         )
-        self.__watch_duration_seconds: int = int(linha_csv['watch_duration_seconds'])
+        self.__watch_duration_seconds: int = int(linha_csv['watch_duration_seconds'] or 0)
         self.__comment_text: str = linha_csv.get('comment_text', '').strip()
 
         if linha_csv['tipo_interacao'] in TIPOS_INTERACAO_VALIDOS:
@@ -28,7 +26,6 @@ class Interacao:
     def __str__(self):
         return f"""Conteúdo associado: {self.conteudo_associado}
         Plataforma de interação: {self.plataforma_interacao}
-        Interação ID: {self.interacao_id}
         ID usuário: {self.id_usuario}
         Timestamp da interação: {self.timestamp_interacao}
         Tipo de interação: {self.tipo_interacao}
@@ -46,10 +43,6 @@ class Interacao:
     @property
     def plataforma_interacao(self) -> Plataforma:
         return self.__plataforma_interacao
-
-    @property
-    def interacao_id(self) -> int:
-        return self.__interacao_id
 
     @property
     def id_usuario(self) -> int:
