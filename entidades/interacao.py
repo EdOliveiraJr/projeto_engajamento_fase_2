@@ -8,12 +8,11 @@ class Interacao:
         TIPOS_INTERACAO_VALIDOS = ['view_start', 'like', 'share', 'comment']
         self.__conteudo_associado: Conteudo = conteudo_associado
         self.__plataforma_interacao: Plataforma = plataforma_interacao
-
-        self.__id_usuario: int = int(linha_csv['id_usuario'])
+        self.__id_usuario: int = int(linha_csv['id_usuario'] or 0)
         self.__timestamp_interacao: datetime.datetime = datetime.datetime.strptime(
             linha_csv['timestamp_interacao'], "%Y-%m-%d %H:%M:%S"
         )
-        self.__watch_duration_seconds: int = int(linha_csv['watch_duration_seconds'])
+        self.__watch_duration_seconds: int = int(linha_csv['watch_duration_seconds'] or 0)
         self.__comment_text: str = linha_csv.get('comment_text', '').strip()
 
         if linha_csv['tipo_interacao'] in TIPOS_INTERACAO_VALIDOS:
