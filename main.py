@@ -30,9 +30,10 @@ def pipeline():
     # 5. Top 5 conteúdos por tempo total de consumo
     print("5. Identificando top 5 conteúdos por tempo total de consumo")
     top_conteudos = sistema.identificar_top_conteudos("tempo_total_consumo", 5)
-    for i, c in enumerate(top_conteudos, 1):
-        print(f"{i}. {c} - Tempo total consumido: {c.calcular_tempo_total_consumo()} segundos")
-    print()
+    print(top_conteudos)
+    # for i, c in enumerate(top_conteudos, 1):
+    #     print(f"{i}. {c} - Tempo total consumido: {c.calcular_tempo_total_consumo()} segundos")
+    # print()
 
 if __name__ == "__main__":
              info = '''
@@ -50,6 +51,6 @@ if __name__ == "__main__":
                 Danilo Pinho
                 Edvaldo Oliveira
     '''
-    print(info)
-    pipeline()
-    print("************ Pipeline executado com sucesso! ************")
+print(info)
+pipeline()
+print("************ Pipeline executado com sucesso! ************")
