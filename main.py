@@ -15,41 +15,41 @@ def pipeline():
     plataformas = sistema.listar_plataformas()
     for p in plataformas:
         print(f"- {p}")
-    print()
-
+    print('\n ******************************************\n')
+    
     # 3. Relatório de engajamento dos conteúdos
     print("3. Gerando relatório de engajamento dos conteúdos")
     sistema.gerar_relatorio_engajamento_conteudos()
-    print()
+    print('\n ******************************************\n')
 
     # 4. Relatório de atividade dos usuários
     print("4. Gerando relatório de atividade dos usuários")
     sistema.gerar_relatorio_atividade_usuarios()
+    print('\n ******************************************\n')
+
+    print("5. Relatório de métricas de conteúdos")
+    print("Métrica - Total total de consumo")
+    sistema.identificar_top_conteudos('tempo_total_consumo')
+    print()
+    print("Métrica - Média de tempo de consumo")
+    sistema.identificar_top_conteudos('media_tempo_consumo')
     print()
 
-    # 5. Top 5 conteúdos por tempo total de consumo
-    print("5. Identificando top 5 conteúdos por tempo total de consumo")
-    top_conteudos = sistema.identificar_top_conteudos("tempo_total_consumo", 5)
-    print(top_conteudos)
-    # for i, c in enumerate(top_conteudos, 1):
-    #     print(f"{i}. {c} - Tempo total consumido: {c.calcular_tempo_total_consumo()} segundos")
-    # print()
 
 if __name__ == "__main__":
              info = '''
         Projeto Formação em Tecnologia Rede Globo
-        Módulo DS-PY-19: Lógica de Programação em Python
-        Fase 1: Coleta e Estruturação Inicial de Dados de Engajamento Globo
+        Fase 2: Análise de Engajamento de Mídias Globo com POO
         
         Turma: 1372
-        Professor: Flávio Crispim
+        Professor: Bruno e Maurício
         Equipe:
-                Daniel Brambila
-                Felipe Martins
-                Lucas Sandes
-                Malu Fazendo
-                Danilo Pinho
                 Edvaldo Oliveira
+                Daniel Brambila
+                Malu Fazendo
+                Lucas Sandes
+                Danilo Pinho
+                Felipe Martins
     '''
 print(info)
 pipeline()

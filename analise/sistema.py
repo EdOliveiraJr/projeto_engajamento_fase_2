@@ -105,48 +105,61 @@ class SistemaAnaliseEngajamento:
                 
 
     def gerar_relatorio_atividade_usuarios(self):
-        print("6. Chamando métodos da classe Usuario")
+        print("Chamando métodos da classe Usuario")
 
         for usuario in self.__usuarios_registrados.values():
             print(f"\nUsuário: {usuario}")
 
             for interacao in usuario._interacoes_realizadas:
                 print("- Interações do tipo 'like':")
-                for interacao in usuario.obter_interacoes_por_tipo('like'):
-                    print(f"  • {interacao if interacao else 'Nenhum like'}\n")
+                likes = usuario.obter_interacoes_por_tipo('like')
+                if not likes:
+                    print("  • Nenhum like registrado.")
+                else:
+                    for like in likes:
+                        print(f"  • {like}")
 
                 print("- Interações do tipo 'comment':")
-                for interacao in usuario.obter_interacoes_por_tipo('comment'):
-                    print(f"  • {interacao if interacao else 'Nenhum comentário'}\n" )
-                
+                comments = usuario.obter_interacoes_por_tipo('comment')
+                if not comments:
+                    print("  • Nenhum comentário registrado.")
+                else:
+                    for comment in comments:
+                        print(f"  • {comment}")
+
                 print("- Interações do tipo 'share':")
-                for interacao in usuario.obter_interacoes_por_tipo('share'):
-                    print(f"  • {interacao if interacao else 'Nenhum compartilhamento'}\n")
+                shares = usuario.obter_interacoes_por_tipo('share')
+                if not shares:
+                    print("  • Nenhum compartilhamento registrado.")
+                else:
+                    for share in shares:
+                        print(f"  • {share}")
+                        
 
                 print("- Interações do tipo 'view_start':")
-                for interacao in usuario.obter_interacoes_por_tipo('view_start'):
-                    print(f"  • {interacao if interacao else 'Nenhuma visualização'}\n")
+                views_starts = usuario.obter_interacoes_por_tipo('view_start')
+                if not views_starts:   
+                    print("  • Nenhuma visualização registrada.")
+                else:
+                    for view_start in views_starts:
+                        print(f"  • {view_start}")
+                print()
 
-                    print("- Conteúdos únicos consumidos:")
+                print("- Conteúdos únicos consumidos:")
                 for conteudo in usuario.obter_conteudos_unicos_consumidos():
                     print(f"  • {conteudo}")
+                print()
 
-                    print("- Tempo total de consumo por plataforma:")
-                for plataforma in self.__plataformas_registradas:
+                print("- Tempo total de consumo por plataforma:")
+                for plataforma in self.__plataformas_registradas.values():
                     tempo = usuario.calcular_tempo_total_consumo_plataforma(plataforma)
                     print(f"  • {plataforma}: {tempo} segundos")
+                print()
 
-                    print("- Plataformas mais frequentes:")
-                if not usuario._interacoes_realizadas:
-                    print("  • Nenhuma interação registrada.")
-                elif len(usuario._interacoes_realizadas) < 3:
-                    for nome, quantidade in usuario.plataformas_mais_frequentes(len(usuario._interacoes_realizadas)):
-                        print(f"  • {nome}: {quantidade} interações")
-                else:
-                    print(f"  • Top {3} plataformas mais frequentes:")
-                    for nome, quantidade in usuario.plataformas_mais_frequentes(3):
-                        print(f"  • {nome}: {quantidade} interações")
-
+                print("- Plataformas mais frequentes - Top 3:")
+                for plataforma, valor in usuario.plataformas_mais_frequentes(3) :
+                    print(f"  • {plataforma}: {valor} vez(es)")
+                print()
 
     def identificar_top_conteudos(self, metrica, top_n=3):
         if metrica not in ['tempo_total_consumo', 'percentual_medio_assistido', 'media_tempo_consumo']:
@@ -154,7 +167,7 @@ class SistemaAnaliseEngajamento:
         
         if metrica == 'tempo_total_consumo':           
             for conteudo in self.__conteudos_registrados.values():
-                print("- Tempo total de consumo:")
+                print(f"- {conteudo.nome_conteudo}:")
                 print(f"  • {conteudo.calcular_tempo_total_consumo()} segundos")
                 conteudos = sorted(
                     self.__conteudos_registrados.values(),
@@ -165,8 +178,8 @@ class SistemaAnaliseEngajamento:
         
 
         if metrica == 'media_tempo_consumo':
-            for counteudo in self.__conteudos_registrados:
-                print("- Tempo médio de consumo:")
+            for conteudo in self.__conteudos_registrados.values():
+                print(f"- {conteudo.nome_conteudo}:")
                 print(f"  • {conteudo.calcular_media_tempo_consumo():.2f} segundos")
                 conteudos = sorted(
                     self.__conteudos_registrados.values(),
