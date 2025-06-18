@@ -16,13 +16,17 @@ Aplicar os princípios e práticas de **Programação Orientada a Objetos (POO)*
 projeto_engajamento_fase2/
 ├── main.py                         # Script principal de execução
 ├── interacoes_globo.csv           # Arquivo com dados brutos de interações
-├── entidades/                     # Subpacote com entidades do domínio
+├── entidades/                     # Sub-pacote com entidades do domínio
 │   ├── __init__.py
 │   ├── plataforma.py              # Classe Plataforma
-│   ├── conteudo.py                # Classes Conteudo, Video, Podcast, Artigo
+│   ├── conteudo/                  # Sub-pacote com entidades do tipo conteudo
+|   |   ├── conteudo.py            # Classe Conteudo
+|   |   ├── video.py               # Classe Video (Conteudo)
+|   |   ├── podcast.py             # Classe Podcast (Conteudo)
+|   |   ├── artigo.py              # Classe Artigo (Conteudo)
 │   ├── interacao.py               # Classe Interacao
 │   ├── usuario.py                 # Classe Usuario
-├── analise/                       # Subpacote com sistema de análise
+├── analise/                       # Sub-pacote com sistema de análise
 │   ├── __init__.py
 │   └── sistema.py                 # Classe SistemaAnaliseEngajamento
 └── README.md
@@ -86,7 +90,7 @@ Certifique-se de que o arquivo `interacoes_globo.csv` esteja presente na raiz do
 ## 💡 Aprendizados Esperados
 
 - Projeto orientado a objetos com encapsulamento, herança e polimorfismo.
-- Organização modular com pacotes e subpacotes.
+- Organização modular com pacotes e sub-pacotes.
 - Integração entre camadas de dados, lógica e apresentação.
 - Práticas de validação de entrada e uso de `@property`.
 
